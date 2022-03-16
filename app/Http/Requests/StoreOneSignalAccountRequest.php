@@ -26,6 +26,7 @@ class StoreOneSignalAccountRequest extends FormRequest
                 'string',
                 'max:192',
                 'required',
+                'unique:one_signal_accounts',
             ],
         ];
     }
