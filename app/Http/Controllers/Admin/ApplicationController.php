@@ -85,7 +85,7 @@ class ApplicationController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Basic ' . $account->user_auth_key
-        ])->get('https://onesignal.com/api/v1/apps/' . $request->onesignal_app);
+        ])->get(config('onesignal.api_url') . 'apps/' . $request->onesignal_app);
 
         if ($response->successful()) {
             $data['name'] = $response->json()['name'];

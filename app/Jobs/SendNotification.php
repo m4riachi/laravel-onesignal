@@ -53,10 +53,11 @@ class SendNotification implements ShouldQueue
                     'delayed_option' => config('onesignal.delayed_option'),
                 ];
 
+
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json; charset=utf-8',
                     'Authorization' => 'Basic ' . $application->rest_api_key,
-                ])->post('https://onesignal.com/api/v1/notifications', $fields);
+                ])->post(config('onesignal.api_url') . 'notifications', $fields);
             });
         });
     }
