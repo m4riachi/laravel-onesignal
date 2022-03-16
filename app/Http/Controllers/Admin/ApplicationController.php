@@ -12,6 +12,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Http;
 
 class ApplicationController extends Controller
 {
@@ -77,7 +78,21 @@ class ApplicationController extends Controller
 
     public function store(StoreApplicationRequest $request)
     {
-        $application = Application::create($request->all());
+        $data = $request->all();
+
+        $account = OneSignalAccount::find($request->one_signal_account_id);
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Basic ' . $account->user_auth_key
+        ])->get('https://onesignal.com/api/v1/apps/' . $request->onesignal_app);
+
+        if ($response->successful()) {
+            $data['name'] = $response->json()['name'];
+            $data['active_users'] = $response->json()['messageable_players'];
+        }
+
+        $application = Application::create($data);
 
         return redirect()->route('admin.applications.index');
     }
