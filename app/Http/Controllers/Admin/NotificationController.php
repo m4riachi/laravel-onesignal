@@ -149,6 +149,8 @@ class NotificationController extends Controller
             $notification->image->delete();
         }
 
+        SendNotification::dispatch($notification);
+
         return redirect()->route('admin.notifications.index');
     }
 
