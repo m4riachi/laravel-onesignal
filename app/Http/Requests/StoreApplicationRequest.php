@@ -25,11 +25,13 @@ class StoreApplicationRequest extends FormRequest
                 'string',
                 'max:192',
                 'required',
+                'unique:applications',
             ],
             'rest_api_key' => [
                 'string',
                 'max:192',
                 'required',
+                'unique:applications',
             ],
         ];
     }

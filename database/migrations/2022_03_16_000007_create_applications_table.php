@@ -10,8 +10,8 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('onesignal_app');
-            $table->string('rest_api_key');
+            $table->string('onesignal_app')->unique();
+            $table->string('rest_api_key')->unique();
             $table->string('name')->nullable();
             $table->integer('active_user')->nullable();
             $table->boolean('enabled')->default(0)->nullable();
