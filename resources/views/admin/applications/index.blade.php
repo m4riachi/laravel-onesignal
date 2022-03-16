@@ -23,7 +23,7 @@
                                 <th width="10">
 
                                 </th>
-                                <th>
+                                <th width="20">
                                     {{ trans('cruds.application.fields.id') }}
                                 </th>
                                 <th>
@@ -32,13 +32,13 @@
                                 <th>
                                     {{ trans('cruds.application.fields.name') }}
                                 </th>
-                                <th>
+                                <th style="width: 100px;">
                                     {{ trans('cruds.application.fields.active_user') }}
                                 </th>
-                                <th>
+                                <th style="width: 100px;">
                                     {{ trans('cruds.application.fields.enabled') }}
                                 </th>
-                                <th>
+                                <th style="width: 140px">
                                     &nbsp;
                                 </th>
                             </tr>
@@ -100,8 +100,8 @@
 { data: 'id', name: 'id' },
 { data: 'one_signal_account_name', name: 'one_signal_account.name' },
 { data: 'name', name: 'name' },
-{ data: 'active_user', name: 'active_user' },
-{ data: 'enabled', name: 'enabled' },
+{ data: 'active_user', name: 'active_user', className: 'text-right'},
+{ data: 'enabled', name: 'enabled', className: 'text-center'},
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
@@ -113,7 +113,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>

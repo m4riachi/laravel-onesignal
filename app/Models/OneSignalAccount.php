@@ -35,4 +35,8 @@ class OneSignalAccount extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function applications() {
+        return $this->hasMany(Application::class, 'one_signal_account_id');
+    }
 }

@@ -89,7 +89,7 @@ class ApplicationController extends Controller
 
         if ($response->successful()) {
             $data['name'] = $response->json()['name'];
-            $data['active_users'] = $response->json()['messageable_players'];
+            $data['active_user'] = $response->json()['messageable_players'];
         }
 
         $application = Application::create($data);

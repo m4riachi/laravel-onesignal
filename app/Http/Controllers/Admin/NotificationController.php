@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyNotificationRequest;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
+use App\Jobs\SendNotification;
 use App\Models\Notification;
 use Gate;
 use Illuminate\Http\Request;
@@ -109,6 +110,8 @@ class NotificationController extends Controller
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $notification->id]);
         }
+
+        SendNotification::dispatch($notification);
 
         return redirect()->route('admin.notifications.index');
     }
