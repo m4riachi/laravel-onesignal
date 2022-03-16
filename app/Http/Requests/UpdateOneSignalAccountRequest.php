@@ -26,6 +26,7 @@ class UpdateOneSignalAccountRequest extends FormRequest
                 'string',
                 'max:192',
                 'required',
+                'unique:one_signal_accounts,user_auth_key,' . request()->route('one_signal_account')->id,
             ],
         ];
     }

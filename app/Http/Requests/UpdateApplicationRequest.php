@@ -25,11 +25,13 @@ class UpdateApplicationRequest extends FormRequest
                 'string',
                 'max:192',
                 'required',
+                'unique:applications,onesignal_app,' . request()->route('application')->id,
             ],
             'rest_api_key' => [
                 'string',
                 'max:192',
                 'required',
+                'unique:applications,rest_api_key,' . request()->route('application')->id,
             ],
             'name' => [
                 'string',
